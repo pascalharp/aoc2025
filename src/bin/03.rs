@@ -17,7 +17,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     for l in input.lines() {
         let (tenth_idx, tenth) = find_first_max(&l[0..l.len() - 1]);
         let (_, ones) = find_first_max(&l[tenth_idx + 1..]);
-        total += tenth as u64 * 10 + ones as u64;
+        total += tenth * 10 + ones;
     }
     Some(total)
 }

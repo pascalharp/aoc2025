@@ -6,7 +6,7 @@ fn is_invalid_p1(id: u64) -> bool {
         false
     } else {
         let (left, right) = s.split_at(s.len() / 2);
-        if left == right { true } else { false }
+        left == right
     }
 }
 
@@ -14,7 +14,7 @@ fn is_invalid_p2(id: u64) -> bool {
     let s = id.to_string();
     let len = s.len();
     for i in 1..=(len / 2) {
-        if len % i != 0 {
+        if !len.is_multiple_of(i) {
             continue;
         }
         let mut iter = s.as_bytes().chunks_exact(i);

@@ -40,13 +40,13 @@ pub fn part_two(input: &str) -> Option<u64> {
             curr += next;
             match curr {
                 0 => hits += 1,
-                c if c < 0 => hits += (c.abs() as u64 + 100) / 100,
+                c if c < 0 => hits += (c.unsigned_abs() as u64 + 100) / 100,
                 c if c >= 100 => hits += c as u64 / 100,
                 _ => (),
             }
             curr %= 100;
             if curr < 0 {
-                curr = 100 + curr
+                curr += 100
             }
             (curr, hits)
         });
