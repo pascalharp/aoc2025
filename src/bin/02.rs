@@ -13,8 +13,10 @@ fn is_invalid_p1(id: u64) -> bool {
 fn is_invalid_p2(id: u64) -> bool {
     let s = id.to_string();
     let len = s.len();
-    for i in 1..=(len/2) {
-        if len % i != 0 { continue; }
+    for i in 1..=(len / 2) {
+        if len % i != 0 {
+            continue;
+        }
         let mut iter = s.as_bytes().chunks_exact(i);
         let first = iter.next().unwrap();
         if iter.all(|x| x == first) {

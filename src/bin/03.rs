@@ -27,7 +27,7 @@ pub fn part_two(input: &str) -> Option<u64> {
     for l in input.lines() {
         let mut start_idx = 0;
         for exp in (0..=11).rev() {
-            let (idx, val) = find_first_max(&l[start_idx..l.len()-exp]);
+            let (idx, val) = find_first_max(&l[start_idx..l.len() - exp]);
             total += val * 10u64.pow(exp as u32);
             start_idx += idx + 1;
         }

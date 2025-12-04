@@ -11,7 +11,7 @@ pub fn part_one(input: &str) -> Option<u64> {
             }
             num
         })
-        .fold((50i32, 0u64), |(mut curr, mut hits), next | {
+        .fold((50i32, 0u64), |(mut curr, mut hits), next| {
             curr += next;
             curr %= 100;
             if curr == 0 {
@@ -33,7 +33,7 @@ pub fn part_two(input: &str) -> Option<u64> {
             }
             num
         })
-        .fold((50i32, 0u64), |(mut curr, mut hits), next | {
+        .fold((50i32, 0u64), |(mut curr, mut hits), next| {
             if curr == 0 && next < 0 {
                 curr = 100;
             }
@@ -46,7 +46,7 @@ pub fn part_two(input: &str) -> Option<u64> {
             }
             curr %= 100;
             if curr < 0 {
-                curr = 100+curr
+                curr = 100 + curr
             }
             (curr, hits)
         });
