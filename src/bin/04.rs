@@ -8,9 +8,10 @@ fn is_occupied<T: AsRef<[u8]>>(mat: &[T], row: i32, col: i32) -> bool {
     let col = col as usize;
     if let Some(row) = mat.get(row)
         && let Some(val) = row.as_ref().get(col)
-            && *val == b'@' {
-                return true;
-            }
+        && *val == b'@'
+    {
+        return true;
+    }
     false
 }
 
@@ -30,7 +31,8 @@ fn is_reachable<T: AsRef<[u8]>>(mat: &[T], row: i32, col: i32) -> bool {
         .into_iter()
         .map(|(row, col)| is_occupied(mat, row, col))
         .filter(|v| *v)
-        .count() < 4
+        .count()
+        < 4
 }
 
 fn check_unreachble<T: AsRef<[u8]>>(mat: &[T]) -> impl Iterator<Item = (usize, usize)> {

@@ -42,8 +42,8 @@ pub fn part_one(input: &str) -> Option<u64> {
             _ => panic!("Not in this part"),
         };
 
-        for r in 0..len {
-            acc = f(acc, vals[r][c])
+        for val in vals.iter().take(len) {
+            acc = f(acc, val[c])
         }
         total += acc;
     }
@@ -72,13 +72,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         nums.push(Vec::new());
     }
 
-    for row in input
-        .lines()
-        .collect::<Vec<_>>()
-        .iter()
-        .rev()
-        .skip(1)
-    {
+    for row in input.lines().collect::<Vec<_>>().iter().rev().skip(1) {
         for col_idx in 0..col_count {
             if let Some(c) = row.as_bytes().get(col_idx) {
                 match c {
@@ -90,11 +84,14 @@ pub fn part_two(input: &str) -> Option<u64> {
         }
     }
 
-    let nums = nums.into_iter().map(|v| {
-        v.into_iter()
-            .enumerate()
-            .fold(0, |acc, (idx, v)| acc + v as u64 * 10u64.pow(idx as u32))
-    }).collect::<Vec<_>>();
+    let nums = nums
+        .into_iter()
+        .map(|v| {
+            v.into_iter()
+                .enumerate()
+                .fold(0, |acc, (idx, v)| acc + v as u64 * 10u64.pow(idx as u32))
+        })
+        .collect::<Vec<_>>();
 
     let mut curr = ins.first().unwrap();
     let mut acc = 0u64;
@@ -106,13 +103,17 @@ pub fn part_two(input: &str) -> Option<u64> {
             match ins {
                 Instructions::Add => inner_acc = 0,
                 Instructions::Mul => inner_acc = 1,
-                Instructions::Empty => unreachable!()
+                Instructions::Empty => unreachable!(),
             }
             curr = ins;
         }
         match curr {
             Instructions::Add => inner_acc += nums[i],
-            Instructions::Mul => if nums[i] > 0 { inner_acc *= nums[i] },
+            Instructions::Mul => {
+                if nums[i] > 0 {
+                    inner_acc *= nums[i]
+                }
+            }
             Instructions::Empty => unreachable!(),
         }
     }

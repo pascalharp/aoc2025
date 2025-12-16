@@ -38,7 +38,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         .collect::<Vec<_>>();
 
     ranges.sort_by(|a, b| a.start().cmp(b.start()));
-    let (count, _ ) = ranges.iter().fold((0usize, 0u64), |(count, start), range| {
+    let (count, _) = ranges.iter().fold((0usize, 0u64), |(count, start), range| {
         let s = start.max(*range.start());
         let e = *range.end();
         let count = count + (s..=e).count();
